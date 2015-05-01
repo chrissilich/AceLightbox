@@ -1,0 +1,104 @@
+
+.acelightbox {
+	cursor: pointer;
+	cursor: zoom-in;
+}
+
+.acelightbox_overlay {
+	z-index: 100000000;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: black;
+}
+
+.acelightbox_container {
+	z-index: 100000000;
+	position: fixed;
+	top: 5%;
+	left: 5%;
+	width: 90%;
+	height: 90%;
+	overflow: hidden;
+
+	@media screen and (max-width: 767px) {
+		top: 0%;
+		left: 0%;
+		width: 100%;
+		height: 100%;
+	}
+
+	.acelightbox_content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		opacity: 0;
+
+		@button_size: 44px;
+		@button_size_mobile: 48px;
+
+		img {
+			width: 100%;
+			height: 100%;
+
+			&.zoomed {
+				cursor: move;
+				cursor: grab;
+			}
+		}
+
+		.acelightbox_controls {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: @button_size * 3;
+			background-color: #666;
+			background-color: rgba(0,0,0,0.15);
+			.transition(background-color 0.4s);
+
+			&:hover {
+				background-color: rgba(0,0,0,0.4);
+			}
+
+			a {
+				display: inline-block;
+				width: @button_size;
+				height: @button_size;
+				background-size: 100%;
+				opacity: 0.5;
+				.transition(opacity 0.4s);
+
+				&:hover {
+					opacity: 1;
+				}
+
+				@media screen and (max-width: 767px) {
+					width: @button_size_mobile;
+					height: @button_size_mobile;
+				}
+			}
+			a.acelightbox_controls_plus { background-image: url('../img/acelightbox_plus.png'); }
+			a.acelightbox_controls_minus { background-image: url('../img/acelightbox_minus.png'); }
+			a.acelightbox_controls_close { background-image: url('../img/acelightbox_close.png'); }
+
+			.oldie & {
+				a.acelightbox_controls_plus { background-image: url('../img/acelightbox_plus-oldie.png'); }
+				a.acelightbox_controls_minus { background-image: url('../img/acelightbox_minus-oldie.png'); }
+				a.acelightbox_controls_close { background-image: url('../img/acelightbox_close-oldie.png'); }
+			}
+
+			@media screen and (max-width: 767px) {
+				position: fixed;
+				background-color: rgba(0,0,0,0.5);
+				top: auto;
+				bottom: 30px;
+				width: @button_size_mobile * 3;
+				left: 50%;
+				margin-left: @button_size_mobile * 3 * 0.5 * -1;
+			}
+		}
+	}
+}
